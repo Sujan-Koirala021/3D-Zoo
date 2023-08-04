@@ -29,7 +29,9 @@ class Scene:
             add(Cube(app, pos=(15, i * s, 5 - i), tex_id=2))
 
         # deer
-        add(Deer(app, pos=(10, -1, -10)))
+        add(Deer(app, pos=(5, -1, -10)))
+        add(Fence(app, pos=(6, -1, -10)))
+
 
         # # moving cube
         # self.moving_cube = MovingCube(app, pos=(0, 6, 8), scale=(3, 3, 3), tex_id=1)

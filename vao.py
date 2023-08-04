@@ -28,6 +28,17 @@ class VAO:
         self.vaos['shadow_deer'] = self.get_vao(
             program=self.program.programs['shadow_map'],
             vbo=self.vbo.vbos['deer'])
+        
+                # fence vao
+        self.vaos['fence'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['fence'])
+
+        # shadow fence vao
+        self.vaos['shadow_fence'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['fence'])
+        
 
         # skybox vao
         self.vaos['skybox'] = self.get_vao(
