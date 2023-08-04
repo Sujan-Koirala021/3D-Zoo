@@ -4,7 +4,7 @@ from pygame.locals import *
 
 import moderngl as mgl
 import sys
-# from model import *
+from model import *
 # from camera import Camera
 # from light import Light
 # from mesh import Mesh
@@ -28,12 +28,16 @@ class GraphicsEngine:
         # pygame.event.set_grab(True)
         # pygame.mouse.set_visible(False)
         # # detect and use existing opengl context
-        # self.ctx = mgl.create_context()
+        self.ctx = mgl.create_context()
         # # self.ctx.front_face = 'cw'
         # self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE)
         
         # # create an object to help track time
         self.clock = pygame.time.Clock()
+        
+        #   Triangle scene
+        self.triangle = Triangle(self)
+        
         self.time = 0
         self.delta_time = 0
         # # light
@@ -51,6 +55,7 @@ class GraphicsEngine:
         for event in pygame.event.get():
             #   Quit out of program when you press Escape key or Cross button in window
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                self.triangle.destroy()
                 # self.mesh.destroy()
                 # self.scene_renderer.destroy()
                 pygame.quit()
@@ -59,6 +64,8 @@ class GraphicsEngine:
     def render(self):
         # clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
+        # render triangle
+        self.triangle.render()
         # render scene
         # self.scene_renderer.render()
         # swap buffers
@@ -72,27 +79,13 @@ class GraphicsEngine:
             self.get_time()
             self.check_events()
             # self.camera.update()
-            # self.render()
+            self.render()
             self.delta_time = self.clock.tick(60)
 
 
 if __name__ == '__main__':
     app = GraphicsEngine()
     app.run()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
