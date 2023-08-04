@@ -29,11 +29,11 @@ class Scene:
             add(Cube(app, pos=(15, i * s, 5 - i), tex_id=2))
 
         # deer
-        add(Deer(app, pos=(0, -1, -10)))
+        add(Deer(app, pos=(10, -1, -10)))
 
-        # moving cube
-        self.moving_cube = MovingCube(app, pos=(0, 6, 8), scale=(3, 3, 3), tex_id=1)
-        add(self.moving_cube)
+        # # moving cube
+        # self.moving_cube = MovingCube(app, pos=(0, 6, 8), scale=(3, 3, 3), tex_id=1)
+        # add(self.moving_cube)
 
-    def update(self):
-        self.moving_cube.rot.xyz = self.app.time
+    # def update(self):
+    #     self.moving_cube.rot.xyz = self.app.time

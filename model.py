@@ -98,7 +98,7 @@ class MovingCube(Cube):
 
 class Deer(ExtendedBaseModel):
     def __init__(self, app, vao_name='deer', tex_id='deer',
-                 pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
+                 pos=(0, 0, 0), rot=(-90, 0, 0), scale=(0.04, 0.04, 0.04)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
