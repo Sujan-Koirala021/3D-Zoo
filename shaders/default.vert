@@ -1,18 +1,34 @@
 #version 330 core
 
-// Input attribute: vertex position in 3D space
-layout (location = 0) in vec3 in_position;
+layout (location = 0) in vec2 in_texcoord_0;
+layout (location = 1) in vec3 in_normal;
+layout (location = 2) in vec3 in_position;
 
-// Main vertex shader function
-void main()
-{
-    // The vertex shader transforms the input vertex position into clip space.
+out vec2 uv_0;
+out vec3 normal;
+out vec3 fragPos;
+out vec4 shadowCoord;
 
-    // gl_Position is a built-in output variable representing the transformed vertex position in clip space.
-    // It is of type vec4, where the x, y, and z components represent the 3D position,
-    // and the w component represents the perspective division factor.
+uniform mat4 m_proj;
+uniform mat4 m_view;
+uniform mat4 m_view_light;
+uniform mat4 m_model;
 
-    // Construct a 4D vector by using the in_position vector as the x, y, and z components,
-    // and setting the w component to 1.0. The w component is crucial for perspective division.
-    gl_Position = vec4(in_position, 1.0);
+mat4 m_shadow_bias = mat4(
+    0.5, 0.0, 0.0, 0.0,
+    0.0, 0.5, 0.0, 0.0,
+    0.0, 0.0, 0.5, 0.0,
+    0.5, 0.5, 0.5, 1.0
+);
+
+
+void main() {
+    uv_0 = in_texcoord_0;
+    fragPos = vec3(m_model * vec4(in_position, 1.0));
+    normal = mat3(transpose(inverse(m_model))) * normalize(in_normal);
+    gl_Position = m_proj * m_view * m_model * vec4(in_position, 1.0);
+
+    mat4 shadowMVP = m_proj * m_view_light * m_model;
+    shadowCoord = m_shadow_bias * shadowMVP * vec4(in_position, 1.0);
+    shadowCoord.z -= 0.0005;
 }

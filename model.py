@@ -1,82 +1,157 @@
+import moderngl as mgl
 import numpy as np
+import glm
 
-class Triangle:
-    def __init__(self, app):
-        """
-        Initializes a Triangle object.
 
-        Parameters:
-            app (object): An object containing an OpenGL context (ctx) provided by ModernGL.
-        """
+class BaseModel:
+    def __init__(self, app, vao_name, tex_id, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
         self.app = app
-        self.ctx = app.ctx
-        self.vbo = self.getVertexBufObj()
-        self.shaderProgram = self.getShaderProgram('default')
-        self.vao = self.getVertexArrayObject()
+        self.pos = pos
+        self.vao_name = vao_name
+        self.rot = glm.vec3([glm.radians(a) for a in rot])
+        self.scale = scale
+        self.m_model = self.get_model_matrix()
+        self.tex_id = tex_id
+        self.vao = app.mesh.vao.vaos[vao_name]
+        self.program = self.vao.program
+        self.camera = self.app.camera
+
+    def update(self): ...
+
+    def get_model_matrix(self):
+        m_model = glm.mat4()
+        # translate
+        m_model = glm.translate(m_model, self.pos)
+        # rotate
+        m_model = glm.rotate(m_model, self.rot.z, glm.vec3(0, 0, 1))
+        m_model = glm.rotate(m_model, self.rot.y, glm.vec3(0, 1, 0))
+        m_model = glm.rotate(m_model, self.rot.x, glm.vec3(1, 0, 0))
+        # scale
+        m_model = glm.scale(m_model, self.scale)
+        return m_model
 
     def render(self):
-        """
-        Renders the triangle by calling the render method of the vertex array object (vao).
-        """
+        self.update()
         self.vao.render()
 
-    def destroy(self):
-        """
-        Releases the resources used by the triangle, including the vertex array object,
-        shader program, and vertex buffer object (vbo).
-        """
-        self.vao.release()
-        self.shaderProgram.release()
-        self.vbo.release()
 
-    def getVertexArrayObject(self):
-        """
-        Creates and returns a vertex array object (vao) which associates the vertex buffer object (vbo)
-        with the shader program. It specifies the vertex attributes and their locations in the shader.
+class ExtendedBaseModel(BaseModel):
+    def __init__(self, app, vao_name, tex_id, pos, rot, scale):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        self.on_init()
 
-        Returns:
-            moderngl.VertexArray: A vertex array object representing the triangle.
-        """
-        vao = self.ctx.vertex_array(self.shaderProgram, [(self.vbo, '3f', 'in_position')])
-        return vao
+    def update(self):
+        self.texture.use(location=0)
+        self.program['camPos'].write(self.camera.position)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
 
-    def getVertexData(self):
-        """
-        Returns a NumPy array containing the vertex positions of the triangle.
+    def update_shadow(self):
+        self.shadow_program['m_model'].write(self.m_model)
 
-        Returns:
-            numpy.ndarray: A NumPy array with 3D vertex positions (x, y, z).
-        """
-        vertexData = [(-0.6, -0.8, 0.0), (0.6, -0.8, 0.0), (0.0, 0.8, 0.0)]
-        vertexData = np.array(vertexData, dtype='f4')  # Numpy array with float32 data type
-        return vertexData
+    def render_shadow(self):
+        self.update_shadow()
+        self.shadow_vao.render()
 
-    def getVertexBufObj(self):
-        """
-        Creates and returns a vertex buffer object (vbo) that stores the vertex data in the OpenGL buffer.
+    def on_init(self):
+        self.program['m_view_light'].write(self.app.light.m_view_light)
+        # resolution
+        self.program['u_resolution'].write(glm.vec2(self.app.WIN_SIZE))
+        # depth texture
+        self.depth_texture = self.app.mesh.texture.textures['depth_texture']
+        self.program['shadowMap'] = 1
+        self.depth_texture.use(location=1)
+        # shadow
+        self.shadow_vao = self.app.mesh.vao.vaos['shadow_' + self.vao_name]
+        self.shadow_program = self.shadow_vao.program
+        self.shadow_program['m_proj'].write(self.camera.m_proj)
+        self.shadow_program['m_view_light'].write(self.app.light.m_view_light)
+        self.shadow_program['m_model'].write(self.m_model)
+        # texture
+        self.texture = self.app.mesh.texture.textures[self.tex_id]
+        self.program['u_texture_0'] = 0
+        self.texture.use(location=0)
+        # mvp
+        self.program['m_proj'].write(self.camera.m_proj)
+        self.program['m_view'].write(self.camera.m_view)
+        self.program['m_model'].write(self.m_model)
+        # light
+        self.program['light.position'].write(self.app.light.position)
+        self.program['light.Ia'].write(self.app.light.Ia)
+        self.program['light.Id'].write(self.app.light.Id)
+        self.program['light.Is'].write(self.app.light.Is)
 
-        Returns:
-            moderngl.Buffer: A vertex buffer object representing the vertex data of the triangle.
-        """
-        vertexData = self.getVertexData()
-        vbo = self.ctx.buffer(vertexData)
-        return vbo
 
-    def getShaderProgram(self, shaderName):
-        """
-        Loads and compiles vertex and fragment shader code from files and creates a shader program.
+class Cube(ExtendedBaseModel):
+    def __init__(self, app, vao_name='cube', tex_id=0, pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
-        Parameters:
-            shaderName (str): The name of the shader program without the file extension.
 
-        Returns:
-            moderngl.Program: A shader program representing the rendering pipeline for the triangle.
-        """
-        with open(f'shaders/{shaderName}.vert') as file:
-            vertexShader = file.read()
+class MovingCube(Cube):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-        with open(f'shaders/{shaderName}.frag') as file:
-            fragmentShader = file.read()
+    def update(self):
+        self.m_model = self.get_model_matrix()
+        super().update()
 
-        program = self.ctx.program(vertex_shader=vertexShader, fragment_shader=fragmentShader)
-        return program
+
+class Deer(ExtendedBaseModel):
+    def __init__(self, app, vao_name='deer', tex_id='deer',
+                 pos=(0, 0, 0), rot=(-90, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+
+class SkyBox(BaseModel):
+    def __init__(self, app, vao_name='skybox', tex_id='skybox',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        self.on_init()
+
+    def update(self):
+        self.program['m_view'].write(glm.mat4(glm.mat3(self.camera.m_view)))
+
+    def on_init(self):
+        # texture
+        self.texture = self.app.mesh.texture.textures[self.tex_id]
+        self.program['u_texture_skybox'] = 0
+        self.texture.use(location=0)
+        # mvp
+        self.program['m_proj'].write(self.camera.m_proj)
+        self.program['m_view'].write(glm.mat4(glm.mat3(self.camera.m_view)))
+
+
+class AdvancedSkyBox(BaseModel):
+    def __init__(self, app, vao_name='advanced_skybox', tex_id='skybox',
+                 pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+        self.on_init()
+
+    def update(self):
+        m_view = glm.mat4(glm.mat3(self.camera.m_view))
+        self.program['m_invProjView'].write(glm.inverse(self.camera.m_proj * m_view))
+
+    def on_init(self):
+        # texture
+        self.texture = self.app.mesh.texture.textures[self.tex_id]
+        self.program['u_texture_skybox'] = 0
+        self.texture.use(location=0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

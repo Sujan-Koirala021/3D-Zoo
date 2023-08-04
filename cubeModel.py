@@ -13,6 +13,10 @@ class Cube:
         self.vbo = self.getVertexBufObj()
         self.shaderProgram = self.getShaderProgram('default')
         self.vao = self.getVertexArrayObject()
+        self.onInit()
+        
+    def onInit(self):
+        self.shaderProgram['m_proj'].write(self.app.camera.m_proj)
 
     def render(self):
         """
