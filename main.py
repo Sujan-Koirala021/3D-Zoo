@@ -5,6 +5,8 @@ from pygame.locals import *
 import moderngl as mgl
 import sys
 from model import *
+
+from cubeModel import *
 # from camera import Camera
 # from light import Light
 # from mesh import Mesh
@@ -37,6 +39,7 @@ class GraphicsEngine:
         
         #   Triangle scene
         self.triangle = Triangle(self)
+        self.cube = Cube(self)
         
         self.time = 0
         self.delta_time = 0
@@ -55,7 +58,8 @@ class GraphicsEngine:
         for event in pygame.event.get():
             #   Quit out of program when you press Escape key or Cross button in window
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                self.triangle.destroy()
+                # self.triangle.destroy()
+                self.cube.destroy()
                 # self.mesh.destroy()
                 # self.scene_renderer.destroy()
                 pygame.quit()
@@ -65,7 +69,9 @@ class GraphicsEngine:
         # clear framebuffer
         self.ctx.clear(color=(0.08, 0.16, 0.18))
         # render triangle
-        self.triangle.render()
+        # self.triangle.render()
+        self.cube.render()
+
         # render scene
         # self.scene_renderer.render()
         # swap buffers
