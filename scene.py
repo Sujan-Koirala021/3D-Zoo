@@ -35,16 +35,28 @@ class Scene:
         add(Monkey(app, pos=(15, -1, -4)))
         
         # wall
-        add(Wall(app, pos=(25, -1, -10)))
-        # gate
-        add(Gate(app, pos = (31.5, -1, -10)))
+        # for i in range(-30,30,2):
+        for xposition in range(0,45,6):
+            add(Wall(app, pos=(-25+xposition, -1, -27)))
+            add(Wall(app, pos=(-25+xposition, -1, 27)))
+
+        for ypositionRot in range(0,50,6):
+            add(WallRotate(app, pos=(-28, -1, -24+ypositionRot)))
+            if(ypositionRot!=24):
+                add(WallRotate(app, pos=(-28+48, -1, -24+ypositionRot)))
+            else:
+                # gate
+                add(Gate(app, pos = (-28+48, -1, -24.5+ypositionRot)))
 
         for xposition in range(0,30,6):
             add(Fence(app, pos=(-16+xposition, -1, -13)))
             # add(Fence(app, pos=(-16+xposition, -1, -7)))
+        
 
         for yposition in range(0,30,12):
             add(Fence(app, pos=(-16, -1, -7+yposition)))
+
+
 
         for ypositionRot in range(0,30,6):
             add(FenceRotate(app, pos=(-13, -1, -10+ypositionRot)))
