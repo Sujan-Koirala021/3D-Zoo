@@ -1,0 +1,33 @@
+Old Driveway Gate Model:
+
+---------------------------
+
+Geometry - Polygons
+
+Two Old Pillars:
+Faces - 3052
+Vertices - 3084
+
+Two Gate Lights: 
+Faces - 5988
+Vertices - 6208
+
+Iron Gate:
+Faces - 28767
+Vertices - 28868
+
+Total Faces - 37807 & Vertices - 38160
+
+---------------------------
+
+Files included = Autodesk FBX,  Maya 2014 - Binary .mb and OBJ 
+
+Textures = JPG 2048x2048, Diffuse and Normal Maps 
+
+Textured in Zbrush and Adobe Photoshop 
+
+Rendered with Mental Ray Maya 2014 
+
+---------------------------
+Can be used Commercially with credits
+

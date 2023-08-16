@@ -23,13 +23,16 @@ class Scene:
             for z in range(-n, n, s):
                 add(Cube(app, pos=(x, -s, z)))
 
-        # columns
-        for i in range(9):
-            add(Cube(app, pos=(15, i * s, -9 + i), tex_id=2))
-            add(Cube(app, pos=(15, i * s, 5 - i), tex_id=2))
+        # # columns
+        # for i in range(9):
+        #     add(Cube(app, pos=(15, i * s, -9 + i), tex_id=2))
+        #     add(Cube(app, pos=(15, i * s, 5 - i), tex_id=2))
 
         # deer
         add(Deer(app, pos=(-15, -1, -4)))
+        
+        # gate
+        add(Gate(app, pos = (35, -1, -10)))
 
         for xposition in range(0,30,6):
             add(Fence(app, pos=(-16+xposition, -1, -13)))
