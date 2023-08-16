@@ -31,8 +31,11 @@ class Scene:
         # deer
         add(Deer(app, pos=(-15, -1, -4)))
         
+        #Llama
+        add(Llama(app, pos=(15, -1.15, -4)))
+        
         # monkey
-        add(Monkey(app, pos=(15, -1, -4)))
+        add(Monkey(app, pos=(10, -1, -4)))
         
         # wall
         # for i in range(-30,30,2):

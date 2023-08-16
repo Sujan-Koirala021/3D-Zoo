@@ -29,12 +29,24 @@ class VAO:
             program=self.program.programs['shadow_map'],
             vbo=self.vbo.vbos['deer'])
         
+
+        # llama vao
+        self.vaos['llama'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['llama'])
+
+        # shadow llama vao
+        self.vaos['shadow_llama'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['llama'])
+        
+
                # monkey vao
         self.vaos['monkey'] = self.get_vao(
             program=self.program.programs['default'],
             vbo=self.vbo.vbos['monkey'])
 
-        # shadow deer vao
+        # shadow monkey vao
         self.vaos['shadow_monkey'] = self.get_vao(
             program=self.program.programs['shadow_map'],
             vbo=self.vbo.vbos['monkey'])
@@ -45,7 +57,7 @@ class VAO:
             program=self.program.programs['default'],
             vbo=self.vbo.vbos['wall'])
 
-        # shadow deer vao
+        # shadow wall vao
         self.vaos['shadow_wall'] = self.get_vao(
             program=self.program.programs['shadow_map'],
             vbo=self.vbo.vbos['wall'])

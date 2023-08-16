@@ -101,6 +101,13 @@ class Deer(ExtendedBaseModel):
                  pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
+
+class Llama(ExtendedBaseModel):
+    def __init__(self, app, vao_name='llama', tex_id='llama',
+                 pos=(0, 10, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+
 class Monkey(ExtendedBaseModel):
     def __init__(self, app, vao_name='monkey', tex_id='monkey',
                  pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.01, 0.01, 0.01)):
