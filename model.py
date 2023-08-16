@@ -100,7 +100,13 @@ class Deer(ExtendedBaseModel):
     def __init__(self, app, vao_name='deer', tex_id='deer',
                  pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+class Monkey(ExtendedBaseModel):
+    def __init__(self, app, vao_name='monkey', tex_id='monkey',
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.01, 0.01, 0.01)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
      
+
 
 class Gate(ExtendedBaseModel):
     def __init__(self, app, vao_name='gate', tex_id='gate',

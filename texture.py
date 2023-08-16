@@ -12,6 +12,8 @@ class Texture:
         self.textures[1] = self.get_texture(path='textures/img_1.png')
         self.textures[2] = self.get_texture(path='textures/img_2.png')
         self.textures['deer'] = self.get_texture(path='objects/deer/12961_White-TailedDeer_diffuse.jpg')
+        self.textures['monkey'] = self.get_texture(path='objects/monkey/14092_ speak_No_ Evil_ Monkey_v2_diff.jpg')
+
         self.textures['fence'] = self.get_texture(path='objects/fence/Fence.png')
         self.textures['wall'] = self.get_texture(path='objects/wall/wall_diffuse.jpg')
 

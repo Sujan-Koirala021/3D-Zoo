@@ -31,6 +31,9 @@ class Scene:
         # deer
         add(Deer(app, pos=(-15, -1, -4)))
         
+        # monkey
+        add(Monkey(app, pos=(15, -1, -4)))
+        
         # wall
         add(Wall(app, pos=(25, -1, -10)))
         # gate
