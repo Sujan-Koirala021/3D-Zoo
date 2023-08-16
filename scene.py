@@ -34,6 +34,13 @@ class Scene:
         #Llama
         add(Llama(app, pos=(15, -1.15, -4)))
         
+        #Tapir
+        add(Tapir(app, pos=(18, -1.15, -4)))
+        #Ibex
+        add(Ibex(app, pos=(20, -1.15, -4)))
+        #Tree
+        # add(Tree(app, pos=(15, -1.15, -4)))
+        
         # monkey
         add(Monkey(app, pos=(10, -1, -4)))
         

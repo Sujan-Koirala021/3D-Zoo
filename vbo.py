@@ -10,6 +10,8 @@ class VBO:
         self.vbos['deer'] = DeerVBO(ctx)
         self.vbos['monkey'] = MonkeyVBO(ctx)
         self.vbos['llama'] = LlamaVBO(ctx)
+        self.vbos['tapir'] = TapirVBO(ctx)
+        self.vbos['ibex'] = IbexVBO(ctx)
 
 
         self.vbos['gate'] = GateVBO(ctx)
@@ -123,10 +125,49 @@ class LlamaVBO(BaseVBO):
 
     def get_vertex_data(self):
         objs = pywavefront.Wavefront('objects/llama/llama04.obj', cache=True, parse=True)
+
+        
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
+
+
+
+class TapirVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/tapir/12277_Tapir_v1_L2.obj', cache=True, parse=True)
+
+        
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+
+
+
+
+class IbexVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/ibex/13575_Ibex_v1_L1.obj', cache=True, parse=True)
+
+        
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
+
+
 
 
 class WallVBO(BaseVBO):

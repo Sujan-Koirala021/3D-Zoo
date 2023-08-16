@@ -41,6 +41,26 @@ class VAO:
             vbo=self.vbo.vbos['llama'])
         
 
+        # tapir vao
+        self.vaos['tapir'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['tapir'])
+
+        # shadow tapir vao
+        self.vaos['shadow_tapir'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['tapir'])
+
+        # ibex vao
+        self.vaos['ibex'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['ibex'])
+
+        # shadow ibex vao
+        self.vaos['shadow_ibex'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['ibex'])
+
                # monkey vao
         self.vaos['monkey'] = self.get_vao(
             program=self.program.programs['default'],

@@ -14,6 +14,9 @@ class Texture:
         self.textures['deer'] = self.get_texture(path='objects/deer/12961_White-TailedDeer_diffuse.jpg')
         self.textures['monkey'] = self.get_texture(path='objects/monkey/14092_ speak_No_ Evil_ Monkey_v2_diff.jpg')
         self.textures['llama'] = self.get_texture(path='objects/llama/llama04.jpg')
+        self.textures['tapir'] = self.get_texture(path='objects/tapir/tapir_diffuse.jpg')
+        self.textures['ibex'] = self.get_texture(path='objects/ibex/13575_Ibex_diff.jpg')
+
 
         self.textures['fence'] = self.get_texture(path='objects/fence/Fence.png')
         self.textures['wall'] = self.get_texture(path='objects/wall/wall_diffuse.jpg')

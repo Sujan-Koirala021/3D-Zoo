@@ -102,6 +102,26 @@ class Deer(ExtendedBaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
+class Tapir(ExtendedBaseModel):
+    def __init__(self, app, vao_name='tapir', tex_id='tapir',
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+
+class Ibex(ExtendedBaseModel):
+    def __init__(self, app, vao_name='ibex', tex_id='ibex',
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+
+class Tree(ExtendedBaseModel):
+    def __init__(self, app, vao_name='tree', tex_id='tree',
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
+
+
+
 class Llama(ExtendedBaseModel):
     def __init__(self, app, vao_name='llama', tex_id='llama',
                  pos=(0, 10, 0), rot=(0, 0, 0), scale=(1, 1, 1)):

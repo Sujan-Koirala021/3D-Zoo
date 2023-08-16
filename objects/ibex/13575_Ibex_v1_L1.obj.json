@@ -1,0 +1,15 @@
+{
+  "created_at": "2023-08-16T19:51:04.117857",
+  "version": "0.1",
+  "mtllibs": [
+    "13575_Ibex_v1_L1.mtl"
+  ],
+  "vertex_buffers": [
+    {
+      "material": "13575_Ibex",
+      "vertex_format": "T2F_N3F_V3F",
+      "byte_offset": 0,
+      "byte_length": 6385152
+    }
+  ]
+}
