@@ -13,8 +13,10 @@ class Texture:
         self.textures[2] = self.get_texture(path='textures/img_2.png')
         self.textures['deer'] = self.get_texture(path='objects/deer/12961_White-TailedDeer_diffuse.jpg')
         self.textures['fence'] = self.get_texture(path='objects/fence/Fence.png')
+        self.textures['wall'] = self.get_texture(path='objects/wall/wall_diffuse.jpg')
+
         self.textures['gate'] = self.get_texture(path='objects/gate/textures/gate_diffuse.jpg')
-        self.textures['gate'] = self.get_texture(path='objects/gate/textures/pillar_diffuse.jpg')
+        # self.textures['gate'] = self.get_texture(path='objects/gate/textures/pillar_diffuse.jpg')
 
         # self.textures['gate_normal'] = self.get_texture(path='objects/gate/textures/gate_normal.jpg')
         # self.textures['gate_specular'] = self.get_texture(path='objects/gate/textures/gate_specular.jpg')

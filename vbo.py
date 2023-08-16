@@ -11,6 +11,8 @@ class VBO:
         self.vbos['gate'] = GateVBO(ctx)
 
         self.vbos['fence'] = FenceVBO(ctx)
+        self.vbos['wall'] = WallVBO(ctx)
+
 
         self.vbos['skybox'] = SkyBoxVBO(ctx)
         self.vbos['advanced_skybox'] = AdvancedSkyBoxVBO(ctx)
@@ -95,6 +97,19 @@ class DeerVBO(BaseVBO):
         vertex_data = np.array(vertex_data, dtype='f4')
         return vertex_data
 
+
+class WallVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/wall/wall.obj', cache=True, parse=True)
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
 
 class GateVBO(BaseVBO):
     def __init__(self, app):

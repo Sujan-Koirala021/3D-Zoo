@@ -31,8 +31,10 @@ class Scene:
         # deer
         add(Deer(app, pos=(-15, -1, -4)))
         
+        # wall
+        add(Wall(app, pos=(25, -1, -10)))
         # gate
-        add(Gate(app, pos = (35, -1, -10)))
+        add(Gate(app, pos = (31.5, -1, -10)))
 
         for xposition in range(0,30,6):
             add(Fence(app, pos=(-16+xposition, -1, -13)))

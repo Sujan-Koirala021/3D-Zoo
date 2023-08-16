@@ -107,6 +107,12 @@ class Gate(ExtendedBaseModel):
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(0.06, 0.06, 0.06)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
+
+class Wall(ExtendedBaseModel):
+    def __init__(self, app, vao_name='wall', tex_id='wall',
+                 pos=(0, 0, 0), rot=(-90, 0, 0), scale=(0.02, 0.02, 0.02)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
+
 class Fence(ExtendedBaseModel):
     def __init__(self, app, vao_name='fence', tex_id='fence',
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(2, 2, 2)):
