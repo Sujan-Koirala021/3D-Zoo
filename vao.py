@@ -51,6 +51,18 @@ class VAO:
             program=self.program.programs['shadow_map'],
             vbo=self.vbo.vbos['tapir'])
 
+
+        # tree vao
+        self.vaos['tree'] = self.get_vao(
+            program=self.program.programs['default'],
+            vbo=self.vbo.vbos['tree'])
+
+        # shadow tapir vao
+        self.vaos['shadow_tree'] = self.get_vao(
+            program=self.program.programs['shadow_map'],
+            vbo=self.vbo.vbos['tree'])
+
+
         # ibex vao
         self.vaos['ibex'] = self.get_vao(
             program=self.program.programs['default'],

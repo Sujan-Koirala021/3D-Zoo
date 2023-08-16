@@ -12,6 +12,8 @@ class VBO:
         self.vbos['llama'] = LlamaVBO(ctx)
         self.vbos['tapir'] = TapirVBO(ctx)
         self.vbos['ibex'] = IbexVBO(ctx)
+        self.vbos['tree'] = TreeVBO(ctx)
+
 
 
         self.vbos['gate'] = GateVBO(ctx)
@@ -143,6 +145,7 @@ class TapirVBO(BaseVBO):
     def get_vertex_data(self):
         objs = pywavefront.Wavefront('objects/tapir/12277_Tapir_v1_L2.obj', cache=True, parse=True)
 
+
         
         obj = objs.materials.popitem()[1]
         vertex_data = obj.vertices
@@ -150,6 +153,20 @@ class TapirVBO(BaseVBO):
         return vertex_data
 
 
+
+class TreeVBO(BaseVBO):
+    def __init__(self, app):
+        super().__init__(app)
+        self.format = '2f 3f 3f'
+        self.attribs = ['in_texcoord_0', 'in_normal', 'in_position']
+
+    def get_vertex_data(self):
+        objs = pywavefront.Wavefront('objects/tree/10447_Pine_Tree_v1_L3b.obj', cache=True, parse=True)
+
+        obj = objs.materials.popitem()[1]
+        vertex_data = obj.vertices
+        vertex_data = np.array(vertex_data, dtype='f4')
+        return vertex_data
 
 
 class IbexVBO(BaseVBO):

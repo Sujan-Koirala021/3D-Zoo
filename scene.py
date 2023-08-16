@@ -39,7 +39,7 @@ class Scene:
         #Ibex
         add(Ibex(app, pos=(20, -1.15, -4)))
         #Tree
-        # add(Tree(app, pos=(15, -1.15, -4)))
+        add(Tree(app, pos=(15, -1.15, -4)))
         
         # monkey
         add(Monkey(app, pos=(10, -1, -4)))

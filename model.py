@@ -116,7 +116,7 @@ class Ibex(ExtendedBaseModel):
 
 class Tree(ExtendedBaseModel):
     def __init__(self, app, vao_name='tree', tex_id='tree',
-                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.02, 0.02, 0.02)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
