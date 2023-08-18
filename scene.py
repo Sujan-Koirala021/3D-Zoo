@@ -28,21 +28,6 @@ class Scene:
         #     add(Cube(app, pos=(15, i * s, -9 + i), tex_id=2))
         #     add(Cube(app, pos=(15, i * s, 5 - i), tex_id=2))
 
-        # deer
-        add(Deer(app, pos=(-15, -1, -4)))
-        
-        #Llama
-        add(Llama(app, pos=(15, -1.15, -4)))
-        
-        #Tapir
-        add(Tapir(app, pos=(18, -1.15, -4)))
-        #Ibex
-        add(Ibex(app, pos=(20, -1.15, -4)))
-        #Tree
-        add(Tree(app, pos=(15, -1.15, -4)))
-        
-        # monkey
-        add(Monkey(app, pos=(10, -1, -4)))
         
         # wall
         # for i in range(-30,30,2):
@@ -58,23 +43,39 @@ class Scene:
                 # gate
                 add(Gate(app, pos = (-28+48, -1, -24.5+ypositionRot)))
 
-        for xposition in range(0,30,6):
-            add(Fence(app, pos=(-16+xposition, -1, -13)))
-            # add(Fence(app, pos=(-16+xposition, -1, -7)))
-        
 
-        for yposition in range(0,30,12):
-            add(Fence(app, pos=(-16, -1, -7+yposition)))
+        for xposition in range(0,36,6):
+          add(Fence(app, pos=(-14+xposition, -1, -18)))
+          add(Fence(app, pos=(-14+xposition, -1, -18+37)))
 
+        for ypositionRot in range(0,50,6):
+            add(FenceRotate(app, pos=(-17, -1,-24+ypositionRot)))
 
+        add(FenceRotate(app, pos=(0, -1,-23+ypositionRot)))
+        add(FenceRotate(app, pos=(0, -1,-21)))
 
-        for ypositionRot in range(0,30,6):
-            add(FenceRotate(app, pos=(-13, -1, -10+ypositionRot)))
-            add(FenceRotate(app, pos=(-19, -1, -10+ypositionRot)))
+        # deer
 
-        #tree
-        # add(Tree(app, pos=(-16, -1, 0)))
-        # add((app, pos=(-15, -1, -4)))
+        add(Deer(app, pos=(-10, -1, 21)))
+        add(BigDeer(app, pos=(-6, -1, 21)))
+
+        #Llama
+        add(Llama(app, pos=(6, -1.15, 21)))
+        add(BigLlama(app, pos=(10, -1.15, 21)))
+        #Tapir
+        add(Tapir(app, pos=(-20, -1.15, 10)))
+        add(Tapir(app, pos=(-21, -1.15, -7)))
+        #Tree
+        add(Tree(app, pos=(-20, -1.15, -20)))
+        add(Tree(app, pos=(-20, -1.15, 0)))
+        add(Tree(app, pos=(-20, -1.15, 20)))
+        # monkey
+        add(Monkey(app, pos=(-8, -1, -21)))
+        add(BigMonkey(app, pos=(-4, -1, -21)))
+        add(Tree(app, pos=(-11, -1, -21)))
+
+        #Ibex
+        add(Ibex(app, pos=(6, -1.15, -21)))
         # # moving cube
         # self.moving_cube = MovingCube(app, pos=(0, 6, 8), scale=(3, 3, 3), tex_id=1)
         # add(self.moving_cube)

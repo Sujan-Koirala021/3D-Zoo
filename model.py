@@ -98,13 +98,17 @@ class MovingCube(Cube):
 
 class Deer(ExtendedBaseModel):
     def __init__(self, app, vao_name='deer', tex_id='deer',
-                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.05, 0.05, 0.05)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
+class BigDeer(ExtendedBaseModel):
+    def __init__(self, app, vao_name='deer', tex_id='deer',
+                 pos=(0, 10, 0), rot=(-90, 180, 0), scale=(0.07, 0.07, 0.07)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class Tapir(ExtendedBaseModel):
     def __init__(self, app, vao_name='tapir', tex_id='tapir',
-                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.06, 0.06, 0.06)):
+                 pos=(0, 10, 0), rot=(-90, 180, 0), scale=(0.06, 0.06, 0.06)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
@@ -124,16 +128,23 @@ class Tree(ExtendedBaseModel):
 
 class Llama(ExtendedBaseModel):
     def __init__(self, app, vao_name='llama', tex_id='llama',
-                 pos=(0, 10, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
+                 pos=(0, 10, 0), rot=(0, 90, 0), scale=(1, 1, 1)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
+class BigLlama(ExtendedBaseModel):
+    def __init__(self, app, vao_name='llama', tex_id='llama',
+                 pos=(0, 10, 0), rot=(0, 270, 0), scale=(2, 2, 2)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class Monkey(ExtendedBaseModel):
     def __init__(self, app, vao_name='monkey', tex_id='monkey',
                  pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.01, 0.01, 0.01)):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
      
-
+class BigMonkey(ExtendedBaseModel):
+    def __init__(self, app, vao_name='monkey', tex_id='monkey',
+                 pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.014, 0.014, 0.014)):
+        super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 class Gate(ExtendedBaseModel):
     def __init__(self, app, vao_name='gate', tex_id='gate',
