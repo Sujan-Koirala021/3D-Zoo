@@ -4,7 +4,7 @@ A simple zoo simulator using opengl.
 ## Setting up your project
 ### 1. Clone the repository:
 ```
-https://github.com/Sujan-Koirala021/3D-Zoo
+git clone https://github.com/Sujan-Koirala021/3D-Zoo
 ````
 
 ### 2. Create a virtual environment:
