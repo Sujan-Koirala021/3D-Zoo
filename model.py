@@ -87,15 +87,6 @@ class Cube(ExtendedBaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
-class MovingCube(Cube):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def update(self):
-        self.m_model = self.get_model_matrix()
-        super().update()
-
-
 class Deer(ExtendedBaseModel):
     def __init__(self, app, vao_name='deer', tex_id='deer',
                  pos=(0, 10, 0), rot=(-90, 0, 0), scale=(0.05, 0.05, 0.05)):

@@ -1,6 +1,9 @@
+
 from model import *
 import glm
 
+
+#   Scene class contains list of objects to be rendered
 
 class Scene:
     def __init__(self, app):
@@ -30,7 +33,6 @@ class Scene:
 
         
         # wall
-        # for i in range(-30,30,2):
         for xposition in range(0,45,6):
             add(Wall(app, pos=(-25+xposition, -1, -27)))
             add(Wall(app, pos=(-25+xposition, -1, 27)))
@@ -76,9 +78,6 @@ class Scene:
 
         #Ibex
         add(Ibex(app, pos=(6, -1.15, -21)))
-        # # moving cube
-        # self.moving_cube = MovingCube(app, pos=(0, 6, 8), scale=(3, 3, 3), tex_id=1)
-        # add(self.moving_cube)
 
     # def update(self):
     #     self.moving_cube.rot.xyz = self.app.time
