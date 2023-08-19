@@ -9,13 +9,13 @@ from scene import Scene
 from scene_renderer import SceneRenderer
 
 
-class GraphicsEngine:
+class Engine:
     def __init__(self, win_size=(1600, 900)):
         # init pygame modules
         pg.init()
         # window size
         self.WIN_SIZE = win_size
-        # set opengl attr
+        # set opengl attributes
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
@@ -59,20 +59,18 @@ class GraphicsEngine:
         # swap buffers
         pg.display.flip()
 
-    def get_time(self):
-        self.time = pg.time.get_ticks() * 0.001
 
     def run(self):
         while True:
-            self.get_time()
+            self.time = pg.time.get_ticks() * 0.001
             self.check_events()
             self.camera.update()
             self.render()
-            self.delta_time = self.clock.tick(60)
+            self.delta_time = self.clock.tick(60) # 60 fps
 
 
 if __name__ == '__main__':
-    app = GraphicsEngine()
+    app = Engine()
     app.run()
 
 
