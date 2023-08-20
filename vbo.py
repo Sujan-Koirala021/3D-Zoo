@@ -249,6 +249,7 @@ class SkyBoxVBO(BaseVBO):
                    (3, 7, 4), (3, 2, 7),
                    (0, 6, 1), (0, 5, 6)]
         vertex_data = self.get_data(vertices, indices)
+        #   Flip for inside of cube and is counterclockwise
         vertex_data = np.flip(vertex_data, 1).copy(order='C')
         return vertex_data
 

@@ -24,6 +24,8 @@ class SceneRenderer:
         #   Render all objects in self.scene list
         for obj in self.scene.objects:
             obj.render()
+        
+        #   Render skybox
         self.scene.skybox.render()
 
     def render(self):

@@ -169,6 +169,7 @@ class FenceRotate(ExtendedBaseModel):
         super().__init__(app, vao_name, tex_id, pos, rot, scale)
 
 
+#   SkyBox Model
 class SkyBox(BaseModel):
     def __init__(self, app, vao_name='skybox', tex_id='skybox',
                  pos=(0, 0, 0), rot=(0, 0, 0), scale=(1, 1, 1)):
@@ -181,10 +182,12 @@ class SkyBox(BaseModel):
     def on_init(self):
         # texture
         self.texture = self.app.mesh.texture.textures[self.tex_id]
-        self.program['u_texture_skybox'] = 0
+        self.program['u_texture_skybox'] = 0    # variable uniform name defined in frag shader
         self.texture.use(location=0)
         # mvp
+        # Pass projection matrix to shader
         self.program['m_proj'].write(self.camera.m_proj)
+        # Skybox wont move
         self.program['m_view'].write(glm.mat4(glm.mat3(self.camera.m_view)))
 
 
